@@ -1,0 +1,539 @@
+go mod download
+make -C go-llama libbinding.a
+make[1]: Entering directory '/build/go-llama'
+I llama.cpp build info: 
+I UNAME_S:  Linux
+I UNAME_P:  unknown
+I UNAME_M:  x86_64
+I CFLAGS:   -I./llama.cpp -I. -O3 -DNDEBUG -std=c11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -Wno-unused-function -pthread -march=native -mtune=native
+I CXXFLAGS: -I./llama.cpp -I. -I./llama.cpp/examples -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -pthread
+I LDFLAGS:  
+I CC:       cc (Debian 10.2.1-6) 10.2.1 20210110
+I CXX:      g++ (Debian 10.2.1-6) 10.2.1 20210110
+
+mkdir build
+cd build && cmake ../llama.cpp && make VERBOSE=1 ggml && cp -rf CMakeFiles/ggml.dir/ggml.c.o ../llama.cpp/ggml.o
+-- The C compiler identification is GNU 10.2.1
+-- The CXX compiler identification is GNU 10.2.1
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- x86 detected
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /build/go-llama/build
+make[2]: Entering directory '/build/go-llama/build'
+/usr/bin/cmake -S/build/go-llama/llama.cpp -B/build/go-llama/build --check-build-system CMakeFiles/Makefile.cmake 0
+make  -f CMakeFiles/Makefile2 ggml
+make[3]: Entering directory '/build/go-llama/build'
+/usr/bin/cmake -S/build/go-llama/llama.cpp -B/build/go-llama/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /build/go-llama/build/CMakeFiles 1
+make  -f CMakeFiles/Makefile2 CMakeFiles/ggml.dir/all
+make[4]: Entering directory '/build/go-llama/build'
+make  -f CMakeFiles/ggml.dir/build.make CMakeFiles/ggml.dir/depend
+make[5]: Entering directory '/build/go-llama/build'
+cd /build/go-llama/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /build/go-llama/llama.cpp /build/go-llama/llama.cpp /build/go-llama/build /build/go-llama/build /build/go-llama/build/CMakeFiles/ggml.dir/DependInfo.cmake --color=
+Dependee "/build/go-llama/build/CMakeFiles/ggml.dir/DependInfo.cmake" is newer than depender "/build/go-llama/build/CMakeFiles/ggml.dir/depend.internal".
+Dependee "/build/go-llama/build/CMakeFiles/CMakeDirectoryInformation.cmake" is newer than depender "/build/go-llama/build/CMakeFiles/ggml.dir/depend.internal".
+Scanning dependencies of target ggml
+make[5]: Leaving directory '/build/go-llama/build'
+make  -f CMakeFiles/ggml.dir/build.make CMakeFiles/ggml.dir/build
+make[5]: Entering directory '/build/go-llama/build'
+[100%] Building C object CMakeFiles/ggml.dir/ggml.c.o
+/usr/bin/cc  -I/build/go-llama/llama.cpp/. -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -mf16c -mfma -mavx -mavx2 -pthread -std=gnu11 -o CMakeFiles/ggml.dir/ggml.c.o -c /build/go-llama/llama.cpp/ggml.c
+/build/go-llama/llama.cpp/ggml.c: In function 'ggml_compute_forward_alibi_f32':
+/build/go-llama/llama.cpp/ggml.c:9349:15: warning: unused variable 'n_past' [-Wunused-variable]
+ 9349 |     const int n_past = ((int32_t *) src1->data)[0];
+      |               ^~~~~~
+/build/go-llama/llama.cpp/ggml.c: In function 'ggml_compute_forward_alibi_f16':
+/build/go-llama/llama.cpp/ggml.c:9410:15: warning: unused variable 'n_past' [-Wunused-variable]
+ 9410 |     const int n_past = ((int32_t *) src1->data)[0];
+      |               ^~~~~~
+make[5]: Leaving directory '/build/go-llama/build'
+[100%] Built target ggml
+make[4]: Leaving directory '/build/go-llama/build'
+/usr/bin/cmake -E cmake_progress_start /build/go-llama/build/CMakeFiles 0
+make[3]: Leaving directory '/build/go-llama/build'
+make[2]: Leaving directory '/build/go-llama/build'
+make -C llama.cpp llama.o
+make[2]: Entering directory '/build/go-llama/llama.cpp'
+I llama.cpp build info: 
+I UNAME_S:  Linux
+I UNAME_P:  unknown
+I UNAME_M:  x86_64
+I CFLAGS:   -I.              -O3 -DNDEBUG -std=c11   -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -pthread -march=native -mtune=native
+I CXXFLAGS: -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native
+I LDFLAGS:  
+I CC:       cc (Debian 10.2.1-6) 10.2.1 20210110
+I CXX:      g++ (Debian 10.2.1-6) 10.2.1 20210110
+
+g++ -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native -c llama.cpp -o llama.o
+make[2]: Leaving directory '/build/go-llama/llama.cpp'
+make -C llama.cpp common.o
+make[2]: Entering directory '/build/go-llama/llama.cpp'
+I llama.cpp build info: 
+I UNAME_S:  Linux
+I UNAME_P:  unknown
+I UNAME_M:  x86_64
+I CFLAGS:   -I.              -O3 -DNDEBUG -std=c11   -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -pthread -march=native -mtune=native
+I CXXFLAGS: -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native
+I LDFLAGS:  
+I CC:       cc (Debian 10.2.1-6) 10.2.1 20210110
+I CXX:      g++ (Debian 10.2.1-6) 10.2.1 20210110
+
+g++ -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native -c examples/common.cpp -o common.o
+make[2]: Leaving directory '/build/go-llama/llama.cpp'
+g++ -I./llama.cpp -I. -I./llama.cpp/examples -I./examples -O3 -DNDEBUG -std=c++11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -pthread -I./llama.cpp -I./llama.cpp/examples binding.cpp -o binding.o -c 
+binding.cpp: In function 'int llama_predict(void*, void*, char*, bool)':
+binding.cpp:134:42: warning: cast from type 'const char*' to type 'char*' casts away qualifiers [-Wcast-qual]
+  134 |             if (!tokenCallback(state_pr, (char*)token_str)) {
+      |                                          ^~~~~~~~~~~~~~~~
+ar src libbinding.a llama.cpp/ggml.o llama.cpp/common.o llama.cpp/llama.o binding.o
+make[1]: Leaving directory '/build/go-llama'
+make -C go-gpt4all-j libgptj.a
+make[1]: Entering directory '/build/go-gpt4all-j'
+I go-gpt4all-j build info: 
+I UNAME_S:  Linux
+I UNAME_P:  unknown
+I UNAME_M:  x86_64
+I CFLAGS:   -I. -I./gpt4all-j/ggml/include/ggml/ -I./gpt4all-j/ggml/examples/ -I -O3 -DNDEBUG -std=c11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -Wno-unused-function -pthread -march=native -mtune=native
+I CXXFLAGS: -I. -I./gpt4all-j/ggml/include/ggml/ -I./gpt4all-j/ggml/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native
+I LDFLAGS:  
+I CMAKEFLAGS:  
+I CC:       cc (Debian 10.2.1-6) 10.2.1 20210110
+I CXX:      g++ (Debian 10.2.1-6) 10.2.1 20210110
+
+mkdir build
+cd build && cmake ../gpt4all-j/ggml  && make VERBOSE=1 ggml && cp -rf src/CMakeFiles/ggml.dir/ggml.c.o ../ggml.o
+-- The C compiler identification is GNU 10.2.1
+-- The CXX compiler identification is GNU 10.2.1
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: /usr/bin/git (found version "2.30.2") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- x86 detected
+-- Linux detected
+-- x86 detected
+-- Linux detected
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /build/go-gpt4all-j/build
+make[2]: Entering directory '/build/go-gpt4all-j/build'
+/usr/bin/cmake -S/build/go-gpt4all-j/gpt4all-j/ggml -B/build/go-gpt4all-j/build --check-build-system CMakeFiles/Makefile.cmake 0
+make  -f CMakeFiles/Makefile2 ggml
+make[3]: Entering directory '/build/go-gpt4all-j/build'
+/usr/bin/cmake -S/build/go-gpt4all-j/gpt4all-j/ggml -B/build/go-gpt4all-j/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /build/go-gpt4all-j/build/CMakeFiles 2
+make  -f CMakeFiles/Makefile2 src/CMakeFiles/ggml.dir/all
+make[4]: Entering directory '/build/go-gpt4all-j/build'
+make  -f src/CMakeFiles/ggml.dir/build.make src/CMakeFiles/ggml.dir/depend
+make[5]: Entering directory '/build/go-gpt4all-j/build'
+cd /build/go-gpt4all-j/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /build/go-gpt4all-j/gpt4all-j/ggml /build/go-gpt4all-j/gpt4all-j/ggml/src /build/go-gpt4all-j/build /build/go-gpt4all-j/build/src /build/go-gpt4all-j/build/src/CMakeFiles/ggml.dir/DependInfo.cmake --color=
+Dependee "/build/go-gpt4all-j/build/src/CMakeFiles/ggml.dir/DependInfo.cmake" is newer than depender "/build/go-gpt4all-j/build/src/CMakeFiles/ggml.dir/depend.internal".
+Dependee "/build/go-gpt4all-j/build/src/CMakeFiles/CMakeDirectoryInformation.cmake" is newer than depender "/build/go-gpt4all-j/build/src/CMakeFiles/ggml.dir/depend.internal".
+Scanning dependencies of target ggml
+make[5]: Leaving directory '/build/go-gpt4all-j/build'
+make  -f src/CMakeFiles/ggml.dir/build.make src/CMakeFiles/ggml.dir/build
+make[5]: Entering directory '/build/go-gpt4all-j/build'
+[ 50%] Building C object src/CMakeFiles/ggml.dir/ggml.c.o
+cd /build/go-gpt4all-j/build/src && /usr/bin/cc  -I/build/go-gpt4all-j/gpt4all-j/ggml/src/. -I/build/go-gpt4all-j/gpt4all-j/ggml/src/../include -I/build/go-gpt4all-j/gpt4all-j/ggml/src/../include/ggml -Wall                                       -Wextra                                     -Wpedantic                                  -Wshadow                                    -Wcast-qual                                 -Wstrict-prototypes                         -Wpointer-arith                             -Wno-unused-function                     -Werror=vla -mavx -mavx2 -mfma -mf16c -msse3 -O3 -DNDEBUG -std=gnu11 -o CMakeFiles/ggml.dir/ggml.c.o -c /build/go-gpt4all-j/gpt4all-j/ggml/src/ggml.c
+[100%] Linking C static library libggml.a
+cd /build/go-gpt4all-j/build/src && /usr/bin/cmake -P CMakeFiles/ggml.dir/cmake_clean_target.cmake
+cd /build/go-gpt4all-j/build/src && /usr/bin/cmake -E cmake_link_script CMakeFiles/ggml.dir/link.txt --verbose=1
+/usr/bin/ar qc libggml.a CMakeFiles/ggml.dir/ggml.c.o
+/usr/bin/ranlib libggml.a
+make[5]: Leaving directory '/build/go-gpt4all-j/build'
+[100%] Built target ggml
+make[4]: Leaving directory '/build/go-gpt4all-j/build'
+/usr/bin/cmake -E cmake_progress_start /build/go-gpt4all-j/build/CMakeFiles 0
+make[3]: Leaving directory '/build/go-gpt4all-j/build'
+make[2]: Leaving directory '/build/go-gpt4all-j/build'
+g++ -I. -I./gpt4all-j/ggml/include/ggml/ -I./gpt4all-j/ggml/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native -c gpt4all-j/ggml/examples/utils.cpp -o utils.o
+gpt4all-j/ggml/examples/utils.cpp: In function 'void gptj_print_usage(int, char**, const gptj_params&)':
+gpt4all-j/ggml/examples/utils.cpp:41:27: warning: unused parameter 'argc' [-Wunused-parameter]
+   41 | void gptj_print_usage(int argc, char ** argv, const gptj_params & params) {
+      |                       ~~~~^~~~
+g++ -I. -I./gpt4all-j/ggml/include/ggml/ -I./gpt4all-j/ggml/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native gptj.cpp ggml.o utils.o -o gptj.o -c 
+gptj.cpp: In function 'bool gptj_model_load(const string&, std::istream&, gptj_model&, gptj_vocab&)':
+gptj.cpp:203:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  203 |             .mem_size   = ctx_size,
+      |             ^
+gptj.cpp:204:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  204 |             .mem_buffer = NULL,
+      |             ^
+gptj.cpp:205:9: warning: missing initializer for member 'ggml_gptj_init_params::no_alloc' [-Wmissing-field-initializers]
+  205 |         };
+      |         ^
+gptj.cpp:220:19: warning: unused variable 'n_ctx' [-Wunused-variable]
+  220 |         const int n_ctx   = hparams.n_ctx;
+      |                   ^~~~~
+gptj.cpp:339:87: warning: format '%d' expects argument of type 'int', but argument 5 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  339 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%d, %d], expected [%d, %d]\n",
+      |                                                                                      ~^
+      |                                                                                       |
+      |                                                                                       int
+      |                                                                                      %ld
+  340 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                ~~~~~~~~~~~~~                           
+      |                                                            |
+      |                                                            int64_t {aka long int}
+gptj.cpp:339:91: warning: format '%d' expects argument of type 'int', but argument 6 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  339 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%d, %d], expected [%d, %d]\n",
+      |                                                                                          ~^
+      |                                                                                           |
+      |                                                                                           int
+      |                                                                                          %ld
+  340 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                               ~~~~~~~~~~~~~                
+      |                                                                           |
+      |                                                                           int64_t {aka long int}
+gptj.cpp:155:26: warning: unused variable 'wtype2' [-Wunused-variable]
+  155 |     const ggml_gptj_type wtype2 = GGML_TYPE_F32;
+      |                          ^~~~~~
+gptj.cpp: In function 'bool gptj_eval(const gptj_model&, int, int, const std::vector<int>&, std::vector<float>&, size_t&)':
+gptj.cpp:435:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  435 |         .mem_size   = buf_size,
+      |         ^
+gptj.cpp:436:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  436 |         .mem_buffer = buf,
+      |         ^
+gptj.cpp:437:5: warning: missing initializer for member 'ggml_gptj_init_params::no_alloc' [-Wmissing-field-initializers]
+  437 |     };
+      |     ^
+gptj.cpp:440:36: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  440 |     struct ggml_gptj_cgraph gf = { .n_threads = n_threads };
+      |                                    ^
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::n_nodes' [-Wmissing-field-initializers]
+  440 |     struct ggml_gptj_cgraph gf = { .n_threads = n_threads };
+      |                                                           ^
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::n_leafs' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::work_size' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::work' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::nodes' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::grads' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::leafs' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::perf_runs' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::perf_cycles' [-Wmissing-field-initializers]
+gptj.cpp:440:59: warning: missing initializer for member 'ggml_gptj_cgraph::perf_time_us' [-Wmissing-field-initializers]
+gptj.cpp:416:15: warning: unused variable 'd_key' [-Wunused-variable]
+  416 |     const int d_key = n_embd/n_head;
+      |               ^~~~~
+gptj.cpp: In function 'int gptj_predict(void*, void*, char*)':
+gptj.cpp:659:33: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  659 |     for (int i = embd.size(); i < embd_inp.size() + params.n_predict; i++) {
+      |                               ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gptj.cpp:675:15: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  675 |         if (i >= embd_inp.size()) {
+      |             ~~^~~~~~~~~~~~~~~~~~
+gptj.cpp:697:31: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  697 |             for (int k = i; k < embd_inp.size(); k++) {
+      |                             ~~^~~~~~~~~~~~~~~~~
+gptj.cpp:699:33: warning: comparison of integer expressions of different signedness: 'std::vector<int>::size_type' {aka 'long unsigned int'} and 'int32_t' {aka 'int'} [-Wsign-compare]
+  699 |                 if (embd.size() > params.n_batch) {
+      |                     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+gptj.cpp:639:13: warning: unused variable 't_load_us' [-Wunused-variable]
+  639 |     int64_t t_load_us = 0;
+      |             ^~~~~~~~~
+gptj.cpp:644:13: warning: unused variable 't_predict_us' [-Wunused-variable]
+  644 |     int64_t t_predict_us = 0;
+      |             ^~~~~~~~~~~~
+g++: warning: ggml.o: linker input file unused because linking not done
+g++: warning: utils.o: linker input file unused because linking not done
+ar src libgptj.a gptj.o ggml.o utils.o
+make[1]: Leaving directory '/build/go-gpt4all-j'
+make -C go-gpt2 libgpt2.a
+make[1]: Entering directory '/build/go-gpt2'
+I go-gpt4all-j build info: 
+I UNAME_S:  Linux
+I UNAME_P:  unknown
+I UNAME_M:  x86_64
+I CFLAGS:   -I. -I./ggml.cpp/include/ggml/ -I./ggml.cpp/examples/ -I -O3 -DNDEBUG -std=c11 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wdouble-promotion -Wshadow -Wstrict-prototypes -Wpointer-arith -Wno-unused-function -pthread -march=native -mtune=native
+I CXXFLAGS: -I. -I./ggml.cpp/include/ggml/ -I./ggml.cpp/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native
+I LDFLAGS:  
+I CMAKEFLAGS:  
+I CC:       cc (Debian 10.2.1-6) 10.2.1 20210110
+I CXX:      g++ (Debian 10.2.1-6) 10.2.1 20210110
+
+g++ -I. -I./ggml.cpp/include/ggml/ -I./ggml.cpp/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native stablelm.cpp -o stablelm.o -c 
+stablelm.cpp: In function 'bool stablelm_model_load(const string&, stablelm_model&, gpt2_vocab&)':
+stablelm.cpp:211:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  211 |             .mem_size   = ctx_size,
+      |             ^
+stablelm.cpp:212:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  212 |             .mem_buffer = NULL,
+      |             ^
+stablelm.cpp:213:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  213 |             .no_alloc   = false,
+      |             ^
+stablelm.cpp:229:19: warning: unused variable 'n_ctx' [-Wunused-variable]
+  229 |         const int n_ctx   = hparams.n_ctx;
+      |                   ^~~~~
+stablelm.cpp:160:26: warning: unused variable 'wtype2' [-Wunused-variable]
+  160 |     const ggml_gpt2_type wtype2 = GGML_TYPE_F32;
+      |                          ^~~~~~
+stablelm.cpp: In function 'bool stablelm_eval(const stablelm_model&, int, int, const std::vector<int>&, std::vector<float>&, size_t&)':
+stablelm.cpp:450:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  450 |         .mem_size   = buf_size,
+      |         ^
+stablelm.cpp:451:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  451 |         .mem_buffer = buf,
+      |         ^
+stablelm.cpp:452:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  452 |         .no_alloc   = false,
+      |         ^
+stablelm.cpp:456:36: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  456 |     struct ggml_gpt2_cgraph gf = { .n_threads = n_threads };
+      |                                    ^
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::n_nodes' [-Wmissing-field-initializers]
+  456 |     struct ggml_gpt2_cgraph gf = { .n_threads = n_threads };
+      |                                                           ^
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::n_leafs' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::work_size' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::work' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::nodes' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::grads' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::leafs' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_runs' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_cycles' [-Wmissing-field-initializers]
+stablelm.cpp:456:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_time_us' [-Wmissing-field-initializers]
+stablelm.cpp: In function 'int stablelm_predict(void*, void*, char*)':
+stablelm.cpp:698:23: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  698 |     for (int i = 0; i < embd_inp.size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+stablelm.cpp:709:33: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  709 |     for (int i = embd.size(); i < embd_inp.size() + params.n_predict; i++) {
+      |                               ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stablelm.cpp:725:15: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  725 |         if (i >= embd_inp.size()) {
+      |             ~~^~~~~~~~~~~~~~~~~~
+stablelm.cpp:747:31: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  747 |             for (int k = i; k < embd_inp.size(); k++) {
+      |                             ~~^~~~~~~~~~~~~~~~~
+stablelm.cpp:749:33: warning: comparison of integer expressions of different signedness: 'std::vector<int>::size_type' {aka 'long unsigned int'} and 'int32_t' {aka 'int'} [-Wsign-compare]
+  749 |                 if (embd.size() > params.n_batch) {
+      |                     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+stablelm.cpp:673:19: warning: unused variable 't_main_start_us' [-Wunused-variable]
+  673 |     const int64_t t_main_start_us = ggml_gpt2_time_us();
+      |                   ^~~~~~~~~~~~~~~
+stablelm.cpp:681:13: warning: unused variable 't_load_us' [-Wunused-variable]
+  681 |     int64_t t_load_us = 0;
+      |             ^~~~~~~~~
+mkdir build
+cd build && cmake ../ggml.cpp  && make VERBOSE=1 ggml && cp -rf src/CMakeFiles/ggml.dir/ggml.c.o ../ggml.o
+-- The C compiler identification is GNU 10.2.1
+-- The CXX compiler identification is GNU 10.2.1
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: /usr/bin/git (found version "2.30.2") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- x86 detected
+-- Linux detected
+-- x86 detected
+-- Linux detected
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /build/go-gpt2/build
+make[2]: Entering directory '/build/go-gpt2/build'
+/usr/bin/cmake -S/build/go-gpt2/ggml.cpp -B/build/go-gpt2/build --check-build-system CMakeFiles/Makefile.cmake 0
+make  -f CMakeFiles/Makefile2 ggml
+make[3]: Entering directory '/build/go-gpt2/build'
+/usr/bin/cmake -S/build/go-gpt2/ggml.cpp -B/build/go-gpt2/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /build/go-gpt2/build/CMakeFiles 2
+make  -f CMakeFiles/Makefile2 src/CMakeFiles/ggml.dir/all
+make[4]: Entering directory '/build/go-gpt2/build'
+make  -f src/CMakeFiles/ggml.dir/build.make src/CMakeFiles/ggml.dir/depend
+make[5]: Entering directory '/build/go-gpt2/build'
+cd /build/go-gpt2/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /build/go-gpt2/ggml.cpp /build/go-gpt2/ggml.cpp/src /build/go-gpt2/build /build/go-gpt2/build/src /build/go-gpt2/build/src/CMakeFiles/ggml.dir/DependInfo.cmake --color=
+Dependee "/build/go-gpt2/build/src/CMakeFiles/ggml.dir/DependInfo.cmake" is newer than depender "/build/go-gpt2/build/src/CMakeFiles/ggml.dir/depend.internal".
+Dependee "/build/go-gpt2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake" is newer than depender "/build/go-gpt2/build/src/CMakeFiles/ggml.dir/depend.internal".
+Scanning dependencies of target ggml
+make[5]: Leaving directory '/build/go-gpt2/build'
+make  -f src/CMakeFiles/ggml.dir/build.make src/CMakeFiles/ggml.dir/build
+make[5]: Entering directory '/build/go-gpt2/build'
+[ 50%] Building C object src/CMakeFiles/ggml.dir/ggml.c.o
+cd /build/go-gpt2/build/src && /usr/bin/cc  -I/build/go-gpt2/ggml.cpp/src/. -I/build/go-gpt2/ggml.cpp/src/../include -I/build/go-gpt2/ggml.cpp/src/../include/ggml -Wall                                       -Wextra                                     -Wpedantic                                  -Wshadow                                    -Wcast-qual                                 -Wstrict-prototypes                         -Wpointer-arith                             -Wno-unused-function                     -Werror=vla -mavx -mavx2 -mfma -mf16c -msse3 -O3 -DNDEBUG -std=gnu11 -o CMakeFiles/ggml.dir/ggml.c.o -c /build/go-gpt2/ggml.cpp/src/ggml.c
+[100%] Linking C static library libggml.a
+cd /build/go-gpt2/build/src && /usr/bin/cmake -P CMakeFiles/ggml.dir/cmake_clean_target.cmake
+cd /build/go-gpt2/build/src && /usr/bin/cmake -E cmake_link_script CMakeFiles/ggml.dir/link.txt --verbose=1
+/usr/bin/ar qc libggml.a CMakeFiles/ggml.dir/ggml.c.o
+/usr/bin/ranlib libggml.a
+make[5]: Leaving directory '/build/go-gpt2/build'
+[100%] Built target ggml
+make[4]: Leaving directory '/build/go-gpt2/build'
+/usr/bin/cmake -E cmake_progress_start /build/go-gpt2/build/CMakeFiles 0
+make[3]: Leaving directory '/build/go-gpt2/build'
+make[2]: Leaving directory '/build/go-gpt2/build'
+g++ -I. -I./ggml.cpp/include/ggml/ -I./ggml.cpp/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native -c ggml.cpp/examples/utils.cpp -o utils.o
+ggml.cpp/examples/utils.cpp: In function 'void gpt2_print_usage(int, char**, const gpt2_params&)':
+ggml.cpp/examples/utils.cpp:41:27: warning: unused parameter 'argc' [-Wunused-parameter]
+   41 | void gpt2_print_usage(int argc, char ** argv, const gpt2_params & params) {
+      |                       ~~~~^~~~
+g++ -I. -I./ggml.cpp/include/ggml/ -I./ggml.cpp/examples/ -O3 -DNDEBUG -std=c++17 -fPIC -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-multichar -pthread -march=native -mtune=native gpt2.cpp ggml.o utils.o -o gpt2.o -c 
+gpt2.cpp: In function 'bool gpt2_model_load(const string&, gpt2_model&, gpt2_vocab&)':
+gpt2.cpp:210:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  210 |             .mem_size   = ctx_size,
+      |             ^
+gpt2.cpp:211:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  211 |             .mem_buffer = NULL,
+      |             ^
+gpt2.cpp:212:13: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  212 |             .no_alloc   = false,
+      |             ^
+gpt2.cpp:352:89: warning: format '%lld' expects argument of type 'long long int', but argument 5 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  352 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%lld, %lld], expected [%lld, %lld]\n",
+      |                                                                                      ~~~^
+      |                                                                                         |
+      |                                                                                         long long int
+      |                                                                                      %ld
+  353 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                ~~~~~~~~~~~~~                             
+      |                                                            |
+      |                                                            int64_t {aka long int}
+gpt2.cpp:352:95: warning: format '%lld' expects argument of type 'long long int', but argument 6 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  352 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%lld, %lld], expected [%lld, %lld]\n",
+      |                                                                                            ~~~^
+      |                                                                                               |
+      |                                                                                               long long int
+      |                                                                                            %ld
+  353 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                               ~~~~~~~~~~~~~                    
+      |                                                                           |
+      |                                                                           int64_t {aka long int}
+gpt2.cpp:352:112: warning: format '%lld' expects argument of type 'long long int', but argument 7 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  352 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%lld, %lld], expected [%lld, %lld]\n",
+      |                                                                                                             ~~~^
+      |                                                                                                                |
+      |                                                                                                                long long int
+      |                                                                                                             %ld
+  353 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                                              ~~~~~                              
+      |                                                                                  |
+      |                                                                                  int64_t {aka long int}
+gpt2.cpp:352:118: warning: format '%lld' expects argument of type 'long long int', but argument 8 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  352 |                 fprintf(stderr, "%s: tensor '%s' has wrong shape in model file: got [%lld, %lld], expected [%lld, %lld]\n",
+      |                                                                                                                   ~~~^
+      |                                                                                                                      |
+      |                                                                                                                      long long int
+      |                                                                                                                   %ld
+  353 |                         __func__, name.data(), tensor->ne[0], tensor->ne[1], ne[0], ne[1]);
+      |                                                                                     ~~~~~                             
+      |                                                                                         |
+      |                                                                                         int64_t {aka long int}
+gpt2.cpp:359:37: warning: format '%lld' expects argument of type 'long long int', but argument 3 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  359 |                 printf("%24s - [%5lld, %5lld], type = %6s, %6.2f MB, %9zu bytes\n", name.data(), ne[0], ne[1], ftype_str[ftype], ggml_gpt2_nbytes(tensor)/1024.0/1024.0, ggml_gpt2_nbytes(tensor));
+      |                                 ~~~~^                                                            ~~~~~
+      |                                     |                                                                |
+      |                                     long long int                                                    int64_t {aka long int}
+      |                                 %5ld
+gpt2.cpp:359:44: warning: format '%lld' expects argument of type 'long long int', but argument 4 has type 'int64_t' {aka 'long int'} [-Wformat=]
+  359 |                 printf("%24s - [%5lld, %5lld], type = %6s, %6.2f MB, %9zu bytes\n", name.data(), ne[0], ne[1], ftype_str[ftype], ggml_gpt2_nbytes(tensor)/1024.0/1024.0, ggml_gpt2_nbytes(tensor));
+      |                                        ~~~~^                                                            ~~~~~
+      |                                            |                                                                |
+      |                                            long long int                                                    int64_t {aka long int}
+      |                                        %5ld
+gpt2.cpp:160:26: warning: unused variable 'wtype2' [-Wunused-variable]
+  160 |     const ggml_gpt2_type wtype2 = GGML_TYPE_F32;
+      |                          ^~~~~~
+gpt2.cpp: In function 'bool gpt2_eval(const gpt2_model&, int, int, const std::vector<int>&, std::vector<float>&, size_t&)':
+gpt2.cpp:446:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  446 |         .mem_size   = buf_size,
+      |         ^
+gpt2.cpp:447:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  447 |         .mem_buffer = buf,
+      |         ^
+gpt2.cpp:448:9: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  448 |         .no_alloc   = false,
+      |         ^
+gpt2.cpp:452:36: warning: C++ designated initializers only available with '-std=c++2a' or '-std=gnu++2a' [-Wpedantic]
+  452 |     struct ggml_gpt2_cgraph gf = { .n_threads = n_threads };
+      |                                    ^
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::n_nodes' [-Wmissing-field-initializers]
+  452 |     struct ggml_gpt2_cgraph gf = { .n_threads = n_threads };
+      |                                                           ^
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::n_leafs' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::work_size' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::work' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::nodes' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::grads' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::leafs' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_runs' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_cycles' [-Wmissing-field-initializers]
+gpt2.cpp:452:59: warning: missing initializer for member 'ggml_gpt2_cgraph::perf_time_us' [-Wmissing-field-initializers]
+gpt2.cpp: In function 'int gpt2_predict(void*, void*, char*)':
+gpt2.cpp:771:33: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  771 |     for (int i = embd.size(); i < embd_inp.size() + params.n_predict; i++) {
+      |                               ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gpt2.cpp:787:15: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  787 |         if (i >= embd_inp.size()) {
+      |             ~~^~~~~~~~~~~~~~~~~~
+gpt2.cpp:809:31: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  809 |             for (int k = i; k < embd_inp.size(); k++) {
+      |                             ~~^~~~~~~~~~~~~~~~~
+gpt2.cpp:811:33: warning: comparison of integer expressions of different signedness: 'std::vector<int>::size_type' {aka 'long unsigned int'} and 'int32_t' {aka 'int'} [-Wsign-compare]
+  811 |                 if (embd.size() >= params.n_batch) {
+      |                     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+gpt2.cpp:727:19: warning: unused variable 't_main_start_us' [-Wunused-variable]
+  727 |     const int64_t t_main_start_us = ggml_gpt2_time_us();
+      |                   ^~~~~~~~~~~~~~~
+gpt2.cpp:746:13: warning: unused variable 't_load_us' [-Wunused-variable]
+  746 |     int64_t t_load_us = 0;
+      |             ^~~~~~~~~
+g++: warning: ggml.o: linker input file unused because linking not done
+g++: warning: utils.o: linker input file unused because linking not done
+ar src libgpt2.a stablelm.o gpt2.o ggml.o utils.o
+make[1]: Leaving directory '/build/go-gpt2'
+go mod edit -replace github.com/go-skynet/go-llama.cpp=/build/go-llama
+go mod edit -replace github.com/go-skynet/go-gpt4all-j.cpp=/build/go-gpt4all-j
+go mod edit -replace github.com/go-skynet/go-gpt2.cpp=/build/go-gpt2
+[32mI local-ai build info:(B[m
+[32mI BUILD_TYPE: [33mdefault(B[m
+C_INCLUDE_PATH=/build/go-llama:/build/go-gpt4all-j:/build/go-gpt2 LIBRARY_PATH=/build/go-llama:/build/go-gpt4all-j:/build/go-gpt2 go build -o local-ai ./
